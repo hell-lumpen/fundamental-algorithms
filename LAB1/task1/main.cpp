@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdarg>
 #include <fstream>
+#include <string>
 
 int search_substr(const char* string, const char* substring);
 int search_substring_in_files(int (*fcnPtr)(const char*, const char*), const char* substr, int count_paths...);
@@ -35,6 +36,8 @@ int search_substring_in_files(int (*fcnPtr)(const char*, const char*), const cha
 {
     va_list file_paths;
     va_start(file_paths, count_paths);
+    auto *file_names = new std::string[count_paths];
+    int k = 0;
 
     for (int i = 0; i < count_paths; i++)
     {
@@ -42,18 +45,24 @@ int search_substring_in_files(int (*fcnPtr)(const char*, const char*), const cha
         std::ifstream inf(path);
         if (!inf)
         {
-            std::cerr << "Uh oh, could not be opened for reading!" << std::endl;
+            std::cerr << "Uh, could not be opened for reading!" << std::endl;
             exit(1);
         }
         std::string buffer;
         while(getline(inf, buffer))
         {
-            if (fcnPtr(buffer.c_str(), substr))
-                std::cout << path << std::endl;
+            if (fcnPtr(buffer.c_str(), substr)) {
+                file_names[k] = path;
+                k++;
+            }
         }
         inf.close();
     }
 
+    for (int i = 0; i <= k; i++)
+        std::cout << file_names[i] << std::endl;
+
+    delete [] file_names;
     va_end(file_paths);
     
     return 0;
