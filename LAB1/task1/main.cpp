@@ -11,14 +11,6 @@ int main() {
     return 0;
 }
 
-/*
-char * p = (char*) malloc(10*sizeof(char));
-if (p==NULL) exit (1);
-p = (char *) realloc (p,15*sizeof(char));
-
-free(p);
- */
-
 int search_substr(const char* string, const char* substring)
 {
     int i = 0, k = 0;
