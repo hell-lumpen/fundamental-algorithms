@@ -1,0 +1,12 @@
+Converting a number to another number system.
+Format: number_base
+Example: 11100011_2
+
+47_16
+invalid number
+2348_14
+13_14
+109_11
+6068_7
+10_11
+2130_13
