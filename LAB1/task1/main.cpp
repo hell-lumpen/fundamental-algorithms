@@ -42,12 +42,14 @@ int search_substring_in_files(int (*fcnPtr)(const char*, const char*), const cha
     for (int i = 0; i < count_paths; i++)
     {
         char* path = va_arg(file_paths, char*);
+
         std::ifstream inf(path);
         if (!inf)
         {
-            std::cerr << "Uh, could not be opened for reading!" << std::endl;
+            std::cerr << "could not be opened for reading!" << std::endl;
             exit(1);
         }
+
         std::string buffer;
         while(getline(inf, buffer))
         {

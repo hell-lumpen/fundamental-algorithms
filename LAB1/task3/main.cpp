@@ -1,7 +1,5 @@
 #include <iostream>
 #include <cstdarg>
-#include <cmath>
-
 
 int polynomial_value(int x, int n, ...);
 
