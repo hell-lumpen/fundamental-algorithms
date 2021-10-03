@@ -4,7 +4,7 @@
 int polynomial_value(int x, int n, ...);
 
 int main() {
-    polynomial_value(5, 2, 3, 2, 3);
+    polynomial_value(5, 2, 3, 2, 3); // x - переменная, n - максимальная степень, цифры далее - коэффициенты при х
     return 0;
 }
 
