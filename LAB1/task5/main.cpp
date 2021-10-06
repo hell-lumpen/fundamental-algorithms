@@ -61,7 +61,10 @@ public:
     }
 
     friend std::ostream& operator<< (std::ostream &out, const StringNumber &number) {
-        for (int i = 0; i < strlen(number.str_number); ++i) {
+        int i = 0;
+        while (number.str_number[i] == '0')
+            i++;
+        for (; i < strlen(number.str_number); ++i) {
                 out << number.str_number[i];
         }
         out << "_" << number.base << std::endl;
@@ -100,9 +103,9 @@ void add(StringNumber &n1, StringNumber &n2, int base, int count_number, ...){
 }
 
 int main() {
-    StringNumber C("10001", 2);
-    StringNumber B("1111", 2);
-    StringNumber A("10000", 2);
+    StringNumber C("111", 2);
+    StringNumber B("111", 2);
+    StringNumber A("111", 2);
     add(A, B, 2, 1, &C);
     return 0;
 }
